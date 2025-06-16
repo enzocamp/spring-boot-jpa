@@ -3,6 +3,7 @@ package com.projeto_spring_course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projeto_spring_course.entities.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -16,7 +17,7 @@ public class OrderItem implements Serializable{
 	
 	
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
 	private Double price;
@@ -31,6 +32,7 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
